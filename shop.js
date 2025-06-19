@@ -11,7 +11,12 @@ function getBasket() {
 
 function addToBasket(product) {
   const basket = getBasket();
-  basket.push(product);
+  const existing = basket.find((item) => item.product === product);
+  if (existing) {
+    existing.quantity += 1;
+  } else {
+    basket.push({ product, quantity: 1 });
+  }
   localStorage.setItem("basket", JSON.stringify(basket));
 }
 
@@ -30,11 +35,11 @@ function renderBasket() {
     if (cartButtonsRow) cartButtonsRow.style.display = "none";
     return;
   }
-  basket.forEach((product) => {
-    const item = PRODUCTS[product];
-    if (item) {
+  basket.forEach((item) => {
+    const product = PRODUCTS[item.product];
+    if (product) {
       const li = document.createElement("li");
-      li.innerHTML = `<span class='basket-emoji'>${item.emoji}</span> <span>${item.name}</span>`;
+      li.innerHTML = `<span class='basket-emoji'>${product.emoji}</span> <span>${item.quantity}x ${product.name}</span>`;
       basketList.appendChild(li);
     }
   });
@@ -51,8 +56,10 @@ function renderBasketIndicator() {
     indicator.className = "basket-indicator";
     basketLink.appendChild(indicator);
   }
-  if (basket.length > 0) {
-    indicator.textContent = basket.length;
+  // Sum all quantities for indicator
+  const total = basket.reduce((sum, item) => sum + item.quantity, 0);
+  if (total > 0) {
+    indicator.textContent = total;
     indicator.style.display = "flex";
   } else {
     indicator.style.display = "none";
