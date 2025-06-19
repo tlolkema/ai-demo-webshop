@@ -53,14 +53,38 @@
           >
             Add to Basket
           </button>
+          <div id="basketError" style="color: red; margin-top: 0.7rem; display: none;"></div>
         </div>
       </div>
     </main>
     <script src="shop.js"></script>
     <script>
+      function updateAddButtonState() {
+        const basket = getBasket();
+        const btn = document.getElementById("addToBasket");
+        if (basket.length >= 10) {
+          btn.disabled = true;
+        } else {
+          btn.disabled = false;
+        }
+      }
       document.getElementById("addToBasket").onclick = function () {
         addToBasket("banana");
       };
+      window.addEventListener("basketFull", function(e) {
+        const errorDiv = document.getElementById("basketError");
+        errorDiv.textContent = e.detail.message;
+        errorDiv.style.display = "block";
+        document.getElementById("addToBasket").disabled = true;
+      });
+      document.addEventListener("DOMContentLoaded", function() {
+        updateAddButtonState();
+      });
+      window.addEventListener("storage", function() {
+        updateAddButtonState();
+      });
+      // Also update button state after adding
+      window.addEventListener("basketFull", updateAddButtonState);
     </script>
   </body>
 </html>

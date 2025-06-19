@@ -11,6 +11,14 @@ function getBasket() {
 
 function addToBasket(product) {
   const basket = getBasket();
+  if (basket.length >= 10) {
+    // Custom event to notify UI of basket full
+    const event = new CustomEvent("basketFull", {
+      detail: { message: "Your basket is full. You cannot add more than 10 items." }
+    });
+    window.dispatchEvent(event);
+    return;
+  }
   basket.push(product);
   localStorage.setItem("basket", JSON.stringify(basket));
 }
