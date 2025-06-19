@@ -41,6 +41,7 @@ function renderBasket() {
   if (cartButtonsRow) cartButtonsRow.style.display = "flex";
 }
 
+// Render basket indicator
 function renderBasketIndicator() {
   const basket = getBasket();
   let indicator = document.querySelector(".basket-indicator");
