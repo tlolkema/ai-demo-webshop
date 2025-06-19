@@ -67,3 +67,6 @@
   - Create a pull request and see how the pipeline is used
 
 - Whatever you feel like extending the pipeline or agentic capabilities. 😃
+
+Kapot mooie smiley wieeeeeej :D
+
