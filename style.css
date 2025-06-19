@@ -306,3 +306,199 @@ input[type="text"]:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.1);
 }
+.bundles-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.bundle-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bundle-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.bundle-emojis {
+  font-size: 3rem;
+  margin: 1rem 0;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.bundle-desc {
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+.bundle-card h2 {
+  color: #222;
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.bundles-promo {
+  text-align: center;
+  margin: 4rem auto;
+  max-width: 600px;
+  padding: 2rem;
+  background: linear-gradient(135deg, #ffe259 0%, #ffa751 100%);
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(255, 167, 81, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.bundles-promo:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(255, 167, 81, 0.3);
+}
+
+.bundle-link {
+  text-decoration: none;
+  color: #7a4c00;
+}
+
+.bundle-link h2 {
+  margin: 0 0 1rem 0;
+  font-size: 2rem;
+}
+
+.bundle-link p {
+  margin: 0;
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.facts-section {
+  margin-top: 3rem;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.facts-section h3 {
+  color: #222;
+  margin: 0 0 1rem 0;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.nutrition-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.nutrition-item {
+  text-align: center;
+  padding: 1rem;
+  background: #f7faff;
+  border-radius: 12px;
+  transition: transform 0.2s;
+}
+
+.nutrition-item:hover {
+  transform: translateY(-3px);
+}
+
+.nutrition-value {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #e53935;
+  margin-bottom: 0.5rem;
+}
+
+.nutrition-label {
+  color: #666;
+  font-size: 1rem;
+}
+
+.benefits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem 0;
+}
+
+.benefits-list li {
+  padding: 0.8rem 1rem;
+  margin-bottom: 0.8rem;
+  background: #f7faff;
+  border-radius: 8px;
+  color: #444;
+  transition: transform 0.2s;
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.benefits-list li:before {
+  content: "✨";
+  position: absolute;
+  left: 1rem;
+}
+
+.benefits-list li:hover {
+  transform: translateX(5px);
+}
+
+.facts-carousel {
+  position: relative;
+  height: 120px;
+  margin: 2rem 0;
+  overflow: hidden;
+}
+
+.fact-card {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #f7faff;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateX(100%);
+  transition: all 0.5s ease;
+}
+
+.fact-card.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.fact-card p {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #444;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.season-info {
+  text-align: center;
+  padding: 1.5rem;
+  background: #f7faff;
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+
+.season-info p {
+  margin: 0;
+  color: #444;
+  font-size: 1.2rem;
+}

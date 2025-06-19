@@ -4,6 +4,29 @@ const PRODUCTS = {
   lemon: { name: "Lemon", emoji: "🍋" },
 };
 
+const BUNDLES = {
+  healthy_mix: {
+    name: "Healthy Mix",
+    products: ["apple", "banana"],
+    emoji: "🍏🍌"
+  },
+  citrus_lovers: {
+    name: "Citrus Lovers",
+    products: ["lemon", "apple"],
+    emoji: "🍋🍏"
+  },
+  tropical_party: {
+    name: "Tropical Party",
+    products: ["banana", "lemon"],
+    emoji: "🍌🍋"
+  },
+  fruit_feast: {
+    name: "Fruit Feast",
+    products: ["apple", "banana", "lemon"],
+    emoji: "🍏🍌🍋"
+  }
+};
+
 function getBasket() {
   const basket = localStorage.getItem("basket");
   return basket ? JSON.parse(basket) : [];
@@ -19,6 +42,16 @@ function clearBasket() {
   localStorage.removeItem("basket");
 }
 
+function addBundle(bundleId) {
+  const bundle = BUNDLES[bundleId];
+  if (bundle) {
+    const basket = getBasket();
+    basket.push(`bundle_${bundleId}`);
+    localStorage.setItem("basket", JSON.stringify(basket));
+    renderBasketIndicator();
+  }
+}
+
 function renderBasket() {
   const basket = getBasket();
   const basketList = document.getElementById("basketList");
@@ -30,12 +63,22 @@ function renderBasket() {
     if (cartButtonsRow) cartButtonsRow.style.display = "none";
     return;
   }
-  basket.forEach((product) => {
-    const item = PRODUCTS[product];
-    if (item) {
-      const li = document.createElement("li");
-      li.innerHTML = `<span class='basket-emoji'>${item.emoji}</span> <span>${item.name}</span>`;
-      basketList.appendChild(li);
+  basket.forEach((item) => {
+    if (item.startsWith("bundle_")) {
+      const bundleId = item.replace("bundle_", "");
+      const bundle = BUNDLES[bundleId];
+      if (bundle) {
+        const li = document.createElement("li");
+        li.innerHTML = `<span class='basket-emoji'>${bundle.emoji}</span> <span>${bundle.name} Bundle</span>`;
+        basketList.appendChild(li);
+      }
+    } else {
+      const product = PRODUCTS[item];
+      if (product) {
+        const li = document.createElement("li");
+        li.innerHTML = `<span class='basket-emoji'>${product.emoji}</span> <span>${product.name}</span>`;
+        basketList.appendChild(li);
+      }
     }
   });
   if (cartButtonsRow) cartButtonsRow.style.display = "flex";

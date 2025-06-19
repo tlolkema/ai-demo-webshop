@@ -54,13 +54,19 @@
             Add to Basket
           </button>
         </div>
+        <div id="factsContainer"></div>
       </div>
     </main>
     <script src="shop.js"></script>
+    <script src="fruit-facts.js"></script>
     <script>
       document.getElementById("addToBasket").onclick = function () {
         addToBasket("banana");
       };
+      
+      // Add facts section
+      document.getElementById("factsContainer").innerHTML = createFactsSection("banana");
+      initFactsCarousel();
     </script>
   </body>
 </html>

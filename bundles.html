@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fruit Bundles - Fruit Shop</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header role="banner">
+      <div class="header-center">
+        <a href="index.html" class="logo" aria-label="Go to homepage">
+          <img
+            src="img/fruit-shop-logo.webp"
+            class="logo-img"
+            alt="Fruit Shop Logo"
+          />
+          <span class="products-text" style="text-align: center">
+            View Products
+          </span>
+        </a>
+        <nav role="navigation" aria-label="Main navigation">
+          <a
+            href="basket.html"
+            class="basket-link"
+            aria-label="View shopping basket"
+            style="position: relative"
+          >
+            <img
+              src="img/basket-icon.png"
+              class="basket-img"
+              alt="Shopping basket icon"
+            />
+            <span class="basket-text">View shopping basket</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+    <main id="main-content" role="main">
+      <h1 class="products-title">Fruit Bundles</h1>
+      <div class="bundles-container">
+        <div class="bundle-card">
+          <h2>Healthy Mix</h2>
+          <div class="bundle-emojis">
+            <span role="img" aria-label="Apple">🍏</span>
+            <span role="img" aria-label="Banana">🍌</span>
+          </div>
+          <p class="bundle-desc">Perfect for a healthy snack! Get an apple and banana together.</p>
+          <button
+            onclick="addBundle('healthy_mix')"
+            class="cart-action-btn"
+            aria-label="Add Healthy Mix bundle to basket"
+          >
+            Add Bundle to Basket
+          </button>
+        </div>
+
+        <div class="bundle-card">
+          <h2>Citrus Lovers</h2>
+          <div class="bundle-emojis">
+            <span role="img" aria-label="Lemon">🍋</span>
+            <span role="img" aria-label="Apple">🍏</span>
+          </div>
+          <p class="bundle-desc">Fresh and tangy combination! Get a lemon and apple together.</p>
+          <button
+            onclick="addBundle('citrus_lovers')"
+            class="cart-action-btn"
+            aria-label="Add Citrus Lovers bundle to basket"
+          >
+            Add Bundle to Basket
+          </button>
+        </div>
+
+        <div class="bundle-card">
+          <h2>Tropical Party</h2>
+          <div class="bundle-emojis">
+            <span role="img" aria-label="Banana">🍌</span>
+            <span role="img" aria-label="Lemon">🍋</span>
+          </div>
+          <p class="bundle-desc">Exotic flavor mix! Get a banana and lemon together.</p>
+          <button
+            onclick="addBundle('tropical_party')"
+            class="cart-action-btn"
+            aria-label="Add Tropical Party bundle to basket"
+          >
+            Add Bundle to Basket
+          </button>
+        </div>
+
+        <div class="bundle-card">
+          <h2>Fruit Feast</h2>
+          <div class="bundle-emojis">
+            <span role="img" aria-label="Apple">🍏</span>
+            <span role="img" aria-label="Banana">🍌</span>
+            <span role="img" aria-label="Lemon">🍋</span>
+          </div>
+          <p class="bundle-desc">Try them all! Get one of each fruit at a special price.</p>
+          <button
+            onclick="addBundle('fruit_feast')"
+            class="cart-action-btn"
+            aria-label="Add Fruit Feast bundle to basket"
+          >
+            Add Bundle to Basket
+          </button>
+        </div>
+      </div>
+    </main>
+    <script src="shop.js"></script>
+  </body>
+</html> 
