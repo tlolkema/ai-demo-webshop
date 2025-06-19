@@ -30,11 +30,20 @@ function renderBasket() {
     if (cartButtonsRow) cartButtonsRow.style.display = "none";
     return;
   }
+  // Group products by type and count quantities
+  const productCounts = {};
   basket.forEach((product) => {
+    if (!productCounts[product]) {
+      productCounts[product] = 0;
+    }
+    productCounts[product]++;
+  });
+  Object.keys(productCounts).forEach((product) => {
     const item = PRODUCTS[product];
     if (item) {
+      const quantity = productCounts[product];
       const li = document.createElement("li");
-      li.innerHTML = `<span class='basket-emoji'>${item.emoji}</span> <span>${item.name}</span>`;
+      li.innerHTML = `<span class='basket-emoji'>${item.emoji}</span> <span>${quantity}x ${item.name}</span>`;
       basketList.appendChild(li);
     }
   });
