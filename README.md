@@ -85,3 +85,9 @@ Some common issues/mistakes I've seen in previous workshops:
 - Before running the pipeline make sure you have both your GitHub (Scrum) issue and Pull request created.
 - Use the OpenAI API key for the OpenAI nodes, and the Airtop API key for the Airtop nodes.
 - Make sure to follow the steps in this README's `Setup` section, every step is important.
+
+## License
+
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
+
+By Tim Lolkema
