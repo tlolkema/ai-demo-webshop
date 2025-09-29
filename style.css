@@ -306,3 +306,60 @@ input[type="text"]:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(0, 119, 255, 0.1);
 }
+
+.basket-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: #f7faff;
+  border-radius: 8px;
+  margin: 0.7rem 0;
+}
+
+.basket-item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.basket-item-name {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.basket-item-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.remove-item-btn,
+.add-item-btn {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  border: 2px solid #111;
+  background: #fff;
+  color: #111;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.remove-item-btn:hover {
+  background: #e53935;
+  color: #fff;
+  border-color: #e53935;
+}
+
+.add-item-btn:hover {
+  background: #4caf50;
+  color: #fff;
+  border-color: #4caf50;
+}

@@ -6,17 +6,33 @@ const PRODUCTS = {
 
 function getBasket() {
   const basket = localStorage.getItem("basket");
-  return basket ? JSON.parse(basket) : [];
+  return basket ? JSON.parse(basket) : {};
 }
 
 function addToBasket(product) {
   const basket = getBasket();
-  basket.push(product);
+  if (basket[product]) {
+    basket[product]++;
+  } else {
+    basket[product] = 1;
+  }
   localStorage.setItem("basket", JSON.stringify(basket));
 }
 
 function clearBasket() {
   localStorage.removeItem("basket");
+}
+
+function removeFromBasket(product) {
+  const basket = getBasket();
+  if (basket[product]) {
+    if (basket[product] > 1) {
+      basket[product]--;
+    } else {
+      delete basket[product];
+    }
+    localStorage.setItem("basket", JSON.stringify(basket));
+  }
 }
 
 function renderBasket() {
@@ -25,24 +41,63 @@ function renderBasket() {
   const cartButtonsRow = document.querySelector(".cart-buttons-row");
   if (!basketList) return;
   basketList.innerHTML = "";
-  if (basket.length === 0) {
+
+  const basketEntries = Object.entries(basket);
+
+  if (basketEntries.length === 0) {
     basketList.innerHTML = "<li>No products in basket.</li>";
     if (cartButtonsRow) cartButtonsRow.style.display = "none";
     return;
   }
-  basket.forEach((product) => {
-    const item = PRODUCTS[product];
+
+  basketEntries.forEach(([productKey, quantity]) => {
+    const item = PRODUCTS[productKey];
     if (item) {
       const li = document.createElement("li");
-      li.innerHTML = `<span class='basket-emoji'>${item.emoji}</span> <span>${item.name}</span>`;
+      li.className = "basket-item";
+      li.innerHTML = `
+        <span class='basket-emoji'>${item.emoji}</span> 
+        <span class="basket-item-details">
+          <span class="basket-item-name">${quantity}x ${item.name}</span>
+          <div class="basket-item-actions">
+            <button class="remove-item-btn" data-product="${productKey}" aria-label="Remove one ${item.name} from basket">-</button>
+            <button class="add-item-btn" data-product="${productKey}" aria-label="Add one more ${item.name} to basket">+</button>
+          </div>
+        </span>
+      `;
       basketList.appendChild(li);
     }
   });
+
+  // Add event listeners for the new buttons
+  document.querySelectorAll(".remove-item-btn").forEach((btn) => {
+    btn.onclick = function () {
+      const product = this.getAttribute("data-product");
+      removeFromBasket(product);
+      renderBasket();
+      renderBasketIndicator();
+    };
+  });
+
+  document.querySelectorAll(".add-item-btn").forEach((btn) => {
+    btn.onclick = function () {
+      const product = this.getAttribute("data-product");
+      addToBasket(product);
+      renderBasket();
+      renderBasketIndicator();
+    };
+  });
+
   if (cartButtonsRow) cartButtonsRow.style.display = "flex";
 }
 
-function renderBasketIndicator() {
+function getBasketCount() {
   const basket = getBasket();
+  return Object.values(basket).reduce((sum, quantity) => sum + quantity, 0);
+}
+
+function renderBasketIndicator() {
+  const totalItems = getBasketCount();
   let indicator = document.querySelector(".basket-indicator");
   if (!indicator) {
     const basketLink = document.querySelector(".basket-link");
@@ -51,8 +106,9 @@ function renderBasketIndicator() {
     indicator.className = "basket-indicator";
     basketLink.appendChild(indicator);
   }
-  if (basket.length > 0) {
-    indicator.textContent = basket.length;
+
+  if (totalItems > 0) {
+    indicator.textContent = totalItems;
     indicator.style.display = "flex";
   } else {
     indicator.style.display = "none";
